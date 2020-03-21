@@ -23,7 +23,7 @@ export default function TitleBar() {
           Projects
         </Menu.Item>
         <Menu.Item as={Link} to={routes.COUNTER}>
-          Counter
+          Demo app page
         </Menu.Item>
 
         <Menu.Menu position="right">

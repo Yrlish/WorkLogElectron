@@ -57,7 +57,7 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
-    frame: false,
+    frame: false, // Don't use system title bar
     webPreferences:
       process.env.NODE_ENV === 'development' || process.env.E2E_BUILD === 'true'
         ? {
