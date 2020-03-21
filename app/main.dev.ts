@@ -53,10 +53,14 @@ const createWindow = async () => {
     await installExtensions();
   }
 
+  const windowSize = { height: 728, width: 1024 };
+
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728,
+    width: windowSize.width,
+    height: windowSize.height,
+    minWidth: windowSize.width,
+    minHeight: windowSize.height,
     frame: false, // Don't use system title bar
     webPreferences:
       process.env.NODE_ENV === 'development' || process.env.E2E_BUILD === 'true'
