@@ -11,10 +11,9 @@ import routes from '../constants/routes.json';
 
 export default function TitleBar() {
   return (
-    <Menu fixed="top" className={styles.titlebar}>
+    <Menu fixed="top" className={styles['title-bar']}>
       <Container fluid>
-        <Menu.Item as="span" header>
-          <Icon name="home" />
+        <Menu.Item as="div" header>
           WorkLog
         </Menu.Item>
         <Menu.Item as={Link} to={routes.HOME}>
