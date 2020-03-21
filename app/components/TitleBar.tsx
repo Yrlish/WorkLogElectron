@@ -22,6 +22,9 @@ export default function TitleBar() {
         <Menu.Item as={Link} to={routes.PROJECTS}>
           Projects
         </Menu.Item>
+        <Menu.Item as={Link} to={routes.COUNTER}>
+          Counter
+        </Menu.Item>
 
         <Menu.Menu position="right">
           <Menu.Item as="a" onClick={MinimizeWindow}>
