@@ -35,7 +35,7 @@ export default class TitleBar extends React.Component<any, any> {
       remote.getCurrentWindow().maximize();
       this.setState({
         maximizeIcon: 'window restore outline',
-        maximizeTitle: 'Restore'
+        maximizeTitle: 'Unmaximize'
       });
     }
   }
