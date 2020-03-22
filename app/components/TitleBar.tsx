@@ -5,7 +5,6 @@ import { remote } from 'electron';
 import styles from './TitleBar.scss';
 import routes from '../constants/routes.json';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default class TitleBar extends React.Component<any, any> {
   private static MinimizeWindow() {
     remote.getCurrentWindow().minimize();
@@ -41,7 +40,6 @@ export default class TitleBar extends React.Component<any, any> {
   }
 
   render() {
-    /* eslint-disable react/destructuring-assignment */
     return (
       <Menu fixed="top" className={styles['title-bar']}>
         <Container fluid>
