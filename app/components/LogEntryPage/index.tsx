@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
-import LogEntryForm from './LogEntryForm';
-import LogEntryTable from './LogEntryTable';
+import LogEntryForm from '../LogEntryForm';
+import LogEntryTable from '../LogEntryTable';
 
-export default function Home() {
+export default function LogEntryPage() {
   return (
     <Grid>
       <Grid.Row>

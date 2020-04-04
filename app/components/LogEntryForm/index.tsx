@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
-import { PROJECTS } from '../constants/routes';
+import { PROJECTS } from '../../constants/routes';
 
 export default class LogEntryForm extends React.Component<any, any> {
   constructor(props: Readonly<{}>) {

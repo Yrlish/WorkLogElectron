@@ -1,6 +1,6 @@
 import { Table } from 'semantic-ui-react';
 import React from 'react';
-import ProjectsStateModel from '../models/ProjectsStateModel';
+import ProjectsStateModel from '../../models/ProjectsStateModel';
 
 export default function ProjectsPage(props: { projects: ProjectsStateModel }) {
   const { projects } = props;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import ProjectsTable from '../components/ProjectsTable';
-import ProjectsStateModel from '../models/ProjectsStateModel';
-import { addProject } from '../actions/projects';
-import ProjectModel from '../models/ProjectModel';
+import ProjectsTable from '../ProjectsTable';
+import ProjectsStateModel from '../../models/ProjectsStateModel';
+import { addProject } from '../../actions/projects';
+import ProjectModel from '../../models/ProjectModel';
 
 interface Props {
   projects: ProjectsStateModel;

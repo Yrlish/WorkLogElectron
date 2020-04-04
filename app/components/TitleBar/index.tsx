@@ -2,8 +2,8 @@ import { Container, Icon, Menu } from 'semantic-ui-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { remote } from 'electron';
-import styles from './TitleBar.scss';
-import { HOME, PROJECTS } from '../constants/routes';
+import styles from './styles.scss';
+import { HOME, PROJECTS } from '../../constants/routes';
 
 export default class TitleBar extends React.Component<any, any> {
   private static MinimizeWindow() {
