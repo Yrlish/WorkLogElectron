@@ -1,5 +1,15 @@
 @import '~semantic-ui-css/semantic.min.css';
 
-body {
-  padding: 45px 4px 4px;
+#root {
+  position: absolute;
+  top: 41px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#root > .container {
+  padding: 4px;
+  height: 100%;
+  overflow-y: auto;
 }
