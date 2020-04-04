@@ -1,11 +1,8 @@
-import { Dispatch as ReduxDispatch, Store as ReduxStore, Action } from 'redux';
+import { Action, Store as ReduxStore } from 'redux';
+import ProjectsStateModel from '../models/ProjectsStateModel';
 
-export type counterStateType = {
-  counter: number;
+export type globalStateType = {
+  projects: ProjectsStateModel;
 };
 
-export type GetState = () => counterStateType;
-
-export type Dispatch = ReduxDispatch<Action<string>>;
-
-export type Store = ReduxStore<counterStateType, Action<string>>;
+export type Store = ReduxStore<globalStateType, Action<string>>;

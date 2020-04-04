@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { remote } from 'electron';
 import styles from './TitleBar.scss';
-import routes from '../constants/routes.json';
+import { HOME, PROJECTS } from '../constants/routes';
 
 export default class TitleBar extends React.Component<any, any> {
   private static MinimizeWindow() {
@@ -46,14 +46,11 @@ export default class TitleBar extends React.Component<any, any> {
           <Menu.Item as="div" header>
             WorkLog
           </Menu.Item>
-          <Menu.Item as={Link} to={routes.HOME}>
+          <Menu.Item as={Link} to={HOME}>
             Start
           </Menu.Item>
-          <Menu.Item as={Link} to={routes.PROJECTS}>
+          <Menu.Item as={Link} to={PROJECTS}>
             Projects
-          </Menu.Item>
-          <Menu.Item as={Link} to={routes.COUNTER}>
-            Demo app page
           </Menu.Item>
 
           <Menu.Menu position="right">

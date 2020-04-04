@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
-import routes from '../constants/routes.json';
+import { PROJECTS } from '../constants/routes';
 
 export default class LogEntryForm extends React.Component<any, any> {
   constructor(props: Readonly<{}>) {
@@ -32,7 +32,7 @@ export default class LogEntryForm extends React.Component<any, any> {
 
   render() {
     if (this.state.redirectToProjects) {
-      return <Redirect to={routes.PROJECTS} />;
+      return <Redirect to={PROJECTS} />;
     }
 
     return (
@@ -51,7 +51,7 @@ export default class LogEntryForm extends React.Component<any, any> {
             ]}
           />
           <Form.Button
-            to={routes.PROJECTS}
+            to={PROJECTS}
             circular
             icon="cog"
             label="&nbsp;"
