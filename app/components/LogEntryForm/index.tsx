@@ -1,31 +1,77 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { InputOnChangeData } from 'semantic-ui-react/dist/commonjs/elements/Input/Input';
 import { PROJECTS } from '../../constants/routes';
+import ProjectsStateModel from '../../models/ProjectsStateModel';
+import { DATE_REGEX } from '../../constants/regex';
 
-export default class LogEntryForm extends React.Component<any, any> {
-  constructor(props: Readonly<{}>) {
+interface Props {
+  projects: ProjectsStateModel;
+}
+
+enum ValidationStatus {
+  EMPTY,
+  INVALID,
+  VALID
+}
+
+interface State {
+  date: string;
+  dateClass: string;
+  dateValidation: ValidationStatus;
+  project: number;
+  redirectToProjects: boolean;
+  startTime: string;
+  stopTime: string;
+}
+
+class LogEntryForm extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       date: '',
-      project: '',
+      dateClass: '',
+      dateValidation: ValidationStatus.EMPTY,
+      project: 0,
+      redirectToProjects: false,
       startTime: '',
-      stopTime: '',
-      redirectToProjects: false
+      stopTime: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleProjectsButton = this.handleProjectsButton.bind(this);
+    this.onProjectCogButton = this.onProjectCogButton.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
   }
 
-  // @ts-ignore
-  handleChange = (event, { name, value }) => {
-    if (this.state.hasOwnProperty(name)) {
-      this.setState({ [name]: value });
-    }
-  };
+  private onDateChange(...args: [any, InputOnChangeData]) {
+    const [, data] = args;
+    const { value } = data;
 
-  private handleProjectsButton(event: MouseEvent) {
+    if (value !== '') {
+      if (!DATE_REGEX.test(value)) {
+        this.setState({
+          date: '',
+          dateValidation: ValidationStatus.INVALID,
+          dateClass: 'error'
+        });
+      } else {
+        this.setState({
+          date: value,
+          dateValidation: ValidationStatus.VALID,
+          dateClass: ''
+        });
+      }
+    } else {
+      this.setState({
+        date: value,
+        dateValidation: ValidationStatus.EMPTY,
+        dateClass: ''
+      });
+    }
+  }
+
+  private onProjectCogButton(event: MouseEvent) {
     event.preventDefault();
     this.setState({ redirectToProjects: true });
   }
@@ -35,20 +81,33 @@ export default class LogEntryForm extends React.Component<any, any> {
       return <Redirect to={PROJECTS} />;
     }
 
+    const projectsList: { text: string; value: string }[] = [];
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const [, value] of Object.entries(this.props.projects)) {
+      projectsList.push({
+        text: value.name,
+        value: value.id
+      });
+    }
+
     return (
       <Form>
-        <Form.Input fluid label="Date" placeholder="YYYY-MM-DD" required />
+        <Form.Input
+          fluid
+          label="Date"
+          placeholder="YYYY-MM-DD"
+          required
+          onChange={this.onDateChange}
+          className={this.state.dateClass}
+        />
         <Form.Group>
           <Form.Select
             fluid
             label="Project"
             placeholder="Select a project"
             width={16}
-            options={[
-              { text: 'Project 1', value: 1 },
-              { text: 'Project 2', value: 2 },
-              { text: 'Project 3', value: 3 }
-            ]}
+            options={projectsList}
           />
           <Form.Button
             to={PROJECTS}
@@ -56,7 +115,7 @@ export default class LogEntryForm extends React.Component<any, any> {
             icon="cog"
             label="&nbsp;"
             // @ts-ignore
-            onClick={this.handleProjectsButton}
+            onClick={this.onProjectCogButton}
             style={{ height: '38px', width: '38px' }}
           />
         </Form.Group>
@@ -66,3 +125,11 @@ export default class LogEntryForm extends React.Component<any, any> {
     );
   }
 }
+
+function mapStateToProps(state: { projects: ProjectsStateModel }) {
+  return {
+    projects: state.projects
+  };
+}
+
+export default connect(mapStateToProps, null)(LogEntryForm);

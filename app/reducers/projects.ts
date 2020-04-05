@@ -3,8 +3,8 @@ import ProjectsStateModel from '../models/ProjectsStateModel';
 import ProjectsActionModel from '../models/ProjectsActionModel';
 
 const defaultState: ProjectsStateModel = {
-  0: {
-    id: 0,
+  1: {
+    id: 1,
     name: 'Dummy project',
     description: 'This project is a dummy default project stores inside Redux.'
   }
