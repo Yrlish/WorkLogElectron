@@ -1,19 +1,32 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import LogEntryForm from '../LogEntryForm';
 import LogEntryTable from '../LogEntryTable';
+import ProjectsStateModel from '../../models/ProjectsStateModel';
 
-export default function LogEntryPage() {
-  return (
-    <Grid>
-      <Grid.Row>
-        <Grid.Column computer={4} largeScreen={3}>
-          <LogEntryForm />
-        </Grid.Column>
-        <Grid.Column computer={12} largeScreen={13}>
-          <LogEntryTable />
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  );
+import styles from './styles.scss';
+
+interface Props {
+  projects: ProjectsStateModel;
 }
+
+const LogEntryPage = (props: Props) => {
+  return (
+    <div className={styles.row}>
+      <div className={styles.formColumn}>
+        <LogEntryForm projects={props.projects} />
+      </div>
+      <div className={styles.tableColumn}>
+        <LogEntryTable />
+      </div>
+    </div>
+  );
+};
+
+function mapStateToProps(state: { projects: ProjectsStateModel }) {
+  return {
+    projects: state.projects
+  };
+}
+
+export default connect(mapStateToProps, null)(LogEntryPage);

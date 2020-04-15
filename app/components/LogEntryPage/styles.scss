@@ -1,0 +1,20 @@
+.row {
+  display: flex;
+
+  > .formColumn {
+    $width: 225px;
+
+    width: $width;
+    min-width: $width;
+  }
+
+  > .tableColumn {
+    padding-left: 8px;
+    width: 100%;
+  }
+
+  > .formColumn,
+  > .tableColumn {
+    display: inline-block;
+  }
+}
