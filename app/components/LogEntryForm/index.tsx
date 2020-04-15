@@ -69,8 +69,6 @@ class LogEntryForm extends React.Component<Props, State> {
             options={projectsList}
           />
           <Form.Button
-            to={PROJECTS}
-            circular
             icon="cog"
             label="&nbsp;"
             // @ts-ignore
