@@ -1,5 +1,8 @@
 @import '~semantic-ui-css/semantic.min.css';
 
+// The following styles are intended to override library styles,
+// to make it more suitable for the application.
+
 #root {
   position: absolute;
   top: 41px;
@@ -7,9 +10,31 @@
   right: 0;
   bottom: 0;
 
+  // This is the main container. All content is placed inside this container. Exception for the title bar.
   > .container {
-    padding: 4px;
+    padding: 8px;
     height: 100%;
     overflow-y: auto;
+
+    > .ui.grid {
+      margin: unset;
+
+      > .row {
+        padding-top: unset;
+        padding-bottom: unset;
+
+        > .column {
+          padding-left: 4px;
+          padding-right: 4px;
+
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            padding-right: 0;
+          }
+        }
+      }
+    }
   }
 }
