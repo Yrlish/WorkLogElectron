@@ -5,20 +5,27 @@ import ProjectsTable from '../ProjectsTable';
 import ProjectsStateModel from '../../models/ProjectsStateModel';
 import { addProject } from '../../actions/projects';
 import ProjectModel from '../../models/ProjectModel';
+import SettingsStateModel from '../../models/SettingsStateModel';
+import { globalStateType } from '../../reducers/types';
+import { increaseNextProjectId } from '../../actions/settings';
 
 interface Props {
   projects: ProjectsStateModel;
+  settings: SettingsStateModel;
   addProject: (project: ProjectModel) => void;
+  increaseNextProjectId: () => void;
 }
 
 const ProjectsPage = (props: Props) => {
   const handleClick = () => {
+    const projectId = parseInt(props.settings.nextProjectId.value, 10);
     const project: ProjectModel = {
-      id: Object.keys(props.projects).length + 1,
+      id: projectId,
       name: 'Button Project',
       description: 'Project created by button'
     };
     props.addProject(project);
+    props.increaseNextProjectId();
   };
 
   return (
@@ -31,10 +38,14 @@ const ProjectsPage = (props: Props) => {
   );
 };
 
-function mapStateToProps(state: { projects: ProjectsStateModel }) {
+function mapStateToProps(state: globalStateType) {
   return {
-    projects: state.projects
+    projects: state.projects,
+    settings: state.settings
   };
 }
 
-export default connect(mapStateToProps, { addProject })(ProjectsPage);
+export default connect(mapStateToProps, {
+  addProject,
+  increaseNextProjectId
+})(ProjectsPage);
